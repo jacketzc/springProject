@@ -23,7 +23,13 @@ public class Lesson02 {
     @Test
     public void test2(){
         ApplicationContext context=new ClassPathXmlApplicationContext("beans3.xml");
-        UserDao dao = (UserDao) context.getBean(UserDaoImpl.class);
+        UserDao dao =  context.getBean(UserDao.class);
+        dao.add();
+    }
+    @Test
+    public void test3(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("beans4.xml");
+        UserDao dao = context.getBean(UserDao.class);
         dao.add();
     }
 }
