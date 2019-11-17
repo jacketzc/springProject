@@ -1,13 +1,21 @@
 package com.jacketzc.proxy;
 
-import org.aopalliance.intercept.MethodInvocation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.reflect.Pointcut;
-import org.springframework.stereotype.Repository;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
-@Repository
+@Component
+@Aspect
 public class AspectJ {
+    /*声明一个公共的切入点*/
+    @Pointcut("execution(* com.jacketzc.*.*.*(..))")
+    public void pointcut(){}
+
+    @Before("pointcut()")
     public void before(JoinPoint joinPoint){
         System.out.println("前置通知"+joinPoint);
     }
@@ -20,6 +28,7 @@ public class AspectJ {
         System.out.println("环绕通知");
         return proceed;
     }
+    @AfterReturning(pointcut = "execution(* com.jacketzc.*.*.*(..))",returning = "obj")
     public void afterRun(Object obj){
         System.out.println("后置通知"+obj);
     }

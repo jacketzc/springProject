@@ -9,18 +9,10 @@
                     http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/aop
                             http://www.springframework.org/schema/aop/spring-aop.xsd">
-    <context:annotation-config/>
     <context:component-scan base-package="com.jacketzc"/>
-    <!--Aspectj半自动代理配置-->
-
+    <aop:aspectj-autoproxy/>
+    <!--配置注解生效-->
     <aop:config>
-        <aop:aspect ref="aspectJ">
-            <aop:pointcut id="myPointcut" expression="execution(* com.jacketzc.dao.*.*(..))"/>
-            <aop:before method="before" pointcut-ref="myPointcut"/>
-            <aop:after-returning method="afterRun" pointcut-ref="myPointcut" returning="obj"/>
-            <aop:after method="after" pointcut-ref="myPointcut"/>
-            <aop:around method="around" pointcut-ref="myPointcut"/>
-            <aop:after-throwing method="afterThrow" throwing="e" pointcut-ref="myPointcut"/>
-        </aop:aspect>
+        <aop:aspect ref="aspectJ"/>
     </aop:config>
 </beans>

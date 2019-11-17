@@ -32,4 +32,10 @@ public class Lesson02 {
         UserDao dao = context.getBean(UserDao.class);
         dao.add();
     }
+    @Test
+    public void test4(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("beans5.xml");
+        UserDao userDao = context.getBean(UserDao.class);
+        userDao.add();
+    }
 }
