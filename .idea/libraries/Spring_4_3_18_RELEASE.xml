@@ -21,6 +21,10 @@
       <root url="jar://$PROJECT_DIR$/lib/spring-context-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-context-support-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.com.mchange.v2.c3p0-0.9.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.dbcp-1.2.2.osgi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.pool-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.41-bin.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
