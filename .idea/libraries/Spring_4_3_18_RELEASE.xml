@@ -21,6 +21,8 @@
       <root url="jar://$PROJECT_DIR$/lib/spring-context-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-context-support-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/下载/jar_files/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$USER_HOME$/下载/jar_files/junit-4.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
