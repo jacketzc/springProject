@@ -10,6 +10,6 @@ public class UserServiceImpl implements UserService {
     private UserDao dao;
     @Override
     public void add() {
-        dao.add();
+//        dao.add();
     }
 }

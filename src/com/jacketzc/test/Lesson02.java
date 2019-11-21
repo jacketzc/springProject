@@ -12,30 +12,30 @@ public class Lesson02 {
         Jdkproxy proxy = new Jdkproxy();
 //        UserDao userDao = new UserDaoImpl();
         UserDao dao = (UserDao) proxy.bind(new UserDaoImpl());
-        dao.add();
+//        dao.add();
     }
     @Test
     public void test1(){
         ApplicationContext context=new ClassPathXmlApplicationContext("beans2.xml");
         UserDao dao = (UserDao) context.getBean("proxy");
-        dao.add();
+//        dao.add();
     }
     @Test
     public void test2(){
         ApplicationContext context=new ClassPathXmlApplicationContext("beans3.xml");
         UserDao dao =  context.getBean(UserDao.class);
-        dao.add();
+//        dao.add();
     }
     @Test
     public void test3(){
         ApplicationContext context=new ClassPathXmlApplicationContext("beans4.xml");
         UserDao dao = context.getBean(UserDao.class);
-        dao.add();
+//        dao.add();
     }
     @Test
     public void test4(){
         ApplicationContext context=new ClassPathXmlApplicationContext("beans5.xml");
         UserDao userDao = context.getBean(UserDao.class);
-        userDao.add();
+//        userDao.add();
     }
 }

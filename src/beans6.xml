@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--配置一个datasource对象-->
+    <bean id="source" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql:///day01"/>
+        <property name="username" value="jacketzc"/>
+        <property name="password" value=""/>
+    </bean>
+    <!--配置一个jdbctemple对象-->
+    <bean id="tl" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="source"/>
+    </bean>
+    <bean id="userDao" class="com.jacketzc.dao.UserDaoImpl">
+        <property name="template" ref="tl"/>
+    </bean>
+</beans>

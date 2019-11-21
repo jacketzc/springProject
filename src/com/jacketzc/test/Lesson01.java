@@ -34,7 +34,7 @@ public class Lesson01 {
         Jdkproxy proxy = new Jdkproxy();
 //        UserDao userDao = new UserDaoImpl();
         UserDao dao = (UserDao) proxy.bind(new UserDaoImpl());
-        dao.add();
+//        dao.add();
     }
     @Test
     public void test3(){
@@ -50,6 +50,6 @@ public class Lesson01 {
             }
         });
         UserDaoImpl userDao = (UserDaoImpl) enhancer.create();
-        userDao.add();
+//        userDao.add();
     }
 }
