@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd ">
 
     <!--读取properties-->
     <context:property-placeholder location="classpath:c3p0.properties"/>
@@ -16,8 +22,8 @@
         <property name="password" value="${password}"/>
     </bean>
     <bean id="dao" class="com.jacketzc.dao.AccountDaoImpl">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <property name="dataSource" ref="dataSource"/>
+</bean>
     <!--事务管理器-->
     <bean id="manager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -25,19 +31,21 @@
     <bean id="service" class="com.jacketzc.service.AccountServiceImpl2">
         <property name="dao" ref="dao"/>
     </bean>
-    <bean id="proxyService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="proxyInterfaces" value="com.jacketzc.dao.AccountDao"/>
-        <property name="target" ref="service"/>
-        <property name="transactionManager" ref="manager"/>
-        <!--事务属性配置
-            key写方法名，value写事务配置
-            格式：PROPAGATION ISOLATION readonly -EXCEPTION +EXCEPTION
-                 传播行为      隔离级别    是否只读   异常回滚      异常提交
-        -->
-        <property name="transactionAttributes">
-            <props>
-                <prop key="transfer">PROPAGATION_REQUIRED,ISOLATION_DEFAULT</prop>
-            </props>
-        </property>
-    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="manager">
+        <!--经过测试，如果全部使用默认设置，那么<tx:attributes>这一部分可以不写-->
+        <tx:attributes>
+            <!--事务详情：传播行为、隔离级别-->
+            <!--如果使用默认，可以不写-->
+            <tx:method name="transfer" propagation="REQUIRED" isolation="DEFAULT"/>
+            <!--我不知道这个方法名的意义-->
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config >
+        <!--切入点可以单独配置一个，也可以和通知一起配置-->
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.jacketzc.service.*.*(..))"/>
+    </aop:config>
+
 </beans>

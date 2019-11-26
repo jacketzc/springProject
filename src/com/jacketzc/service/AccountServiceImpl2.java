@@ -24,7 +24,7 @@ public class AccountServiceImpl2 implements AccountService{
      * @param inner 转入账号
      * @param money 金额
      */
-    public void transer(String outer,String inner,Integer money){
+    public void transfer(String outer,String inner,Integer money){
         /*template.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
